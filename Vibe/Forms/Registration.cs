@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 using Vibe.Core.Entities;
 
@@ -14,6 +16,20 @@ namespace Vibe.Forms
             {
                 LoadArtists(_dbContext);
                 LoadGenres(_dbContext);
+            }
+        }
+        //метод для хэширования паролей
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in hashedBytes)
+                {
+                    builder.AppendFormat("{0:x2}", b);
+                }
+                return builder.ToString();
             }
         }
         //Метод для загрузки исполнителей
@@ -39,7 +55,7 @@ namespace Vibe.Forms
                 var user = new User
                 {
                     Login = login,
-                    PasswordHash = password
+                    PasswordHash = HashPassword(password)
                 };
                 if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
                 {
