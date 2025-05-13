@@ -63,9 +63,89 @@ namespace Vibe.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 {
+            get {
+                object obj = ResourceManager.GetObject("d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953__1_ {
+            get {
+                object obj = ResourceManager.GetObject("d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953__1_2 {
+            get {
+                object obj = ResourceManager.GetObject("d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_1 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rectangle_7 {
+            get {
+                object obj = ResourceManager.GetObject("Rectangle 7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap вход_фон {
             get {
                 object obj = ResourceManager.GetObject("вход фон", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap песни_фон {
+            get {
+                object obj = ResourceManager.GetObject("песни фон", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap песни_фон1 {
+            get {
+                object obj = ResourceManager.GetObject("песни фон1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -11,6 +11,7 @@ namespace Vibe.Core.Entities
         public int ArtistId { get; set; }
         public int GenreId { get; set; }
         public string AlbumArtPath { get; set; } // Путь к изображению обложки
+        public int PopularityScore { get; set; } = 50;
 
         // Навигационные свойства
         public Artist Artist { get; set; }

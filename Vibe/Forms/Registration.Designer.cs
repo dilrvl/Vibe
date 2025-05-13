@@ -70,7 +70,7 @@
             lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblPassword.ForeColor = SystemColors.ButtonHighlight;
-            lblPassword.Location = new Point(590, 147);
+            lblPassword.Location = new Point(590, 154);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(81, 23);
             lblPassword.TabIndex = 2;
@@ -81,7 +81,7 @@
             // 
             txtPassword.Anchor = AnchorStyles.None;
             txtPassword.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            txtPassword.Location = new Point(485, 173);
+            txtPassword.Location = new Point(485, 180);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(273, 30);
             txtPassword.TabIndex = 3;
@@ -107,7 +107,7 @@
             lblPerference.BackColor = Color.Transparent;
             lblPerference.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblPerference.ForeColor = SystemColors.ButtonHighlight;
-            lblPerference.Location = new Point(548, 213);
+            lblPerference.Location = new Point(545, 225);
             lblPerference.Name = "lblPerference";
             lblPerference.Size = new Size(168, 19);
             lblPerference.TabIndex = 6;

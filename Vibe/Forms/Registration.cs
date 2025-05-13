@@ -93,8 +93,11 @@ namespace Vibe.Forms
 
                 MessageBox.Show("Регистрация прошла успешно!");
                 this.Hide();
-                SongForm songForm = new SongForm();
+                var firstTrack = _dbContext.Tracks.FirstOrDefault();
+           
+                SongForm songForm = new SongForm(firstTrack);
                 songForm.Show();
+               
             }
         }
     }

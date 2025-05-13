@@ -34,9 +34,9 @@ namespace Vibe
             using (var _dbContext = new ApplicationDbContext())
             {
                 /*Добавление экземпляров
-                _dbContext.Genres.Add(new Genre { Name = "Электронная музыка" });
-                _dbContext.SaveChanges();
-                */
+                _dbContext.Tracks.Add(new Track { Title = "Popular", ArtistId = 6, GenreId = 2, AlbumArtPath = @"C:\Users\Admin\Pictures\images(1).jpg" });
+                _dbContext.SaveChanges();*/
+                
 
                 // Получение логина и пароля ( нужно будет для хранения и проверки в бд!!)
                 string login = txtLogin.Text;
@@ -60,8 +60,10 @@ namespace Vibe
                 // Успешный вход
                 MessageBox.Show("Вход выполнен успешно!");
                 this.Close();
-                SongForm songForm = new SongForm();
+                var firstTrack = _dbContext.Tracks.Include(t => t.Artist).FirstOrDefault();
+                SongForm songForm = new SongForm(firstTrack);
                 songForm.Show();
+                
             }
         }
         
