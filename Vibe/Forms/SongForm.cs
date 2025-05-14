@@ -14,9 +14,9 @@ namespace Vibe.Forms
         private readonly RecommendationService _recommendationService; // Сервис рекомендаций                                                                    
         public SongForm(Track track)
         {
+            InitializeComponent();
             currentTrack = track;
             UpdateTrackInfo(currentTrack);
-            InitializeComponent();
             _dbContext = new ApplicationDbContext();
             _recommendationService = new RecommendationService(_dbContext);
         }

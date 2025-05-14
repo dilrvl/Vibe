@@ -45,6 +45,7 @@
             pctrBox.Location = new Point(510, 151);
             pctrBox.Name = "pctrBox";
             pctrBox.Size = new Size(243, 219);
+            pctrBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pctrBox.TabIndex = 0;
             pctrBox.TabStop = false;
             // 

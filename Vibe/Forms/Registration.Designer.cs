@@ -32,151 +32,129 @@
             txtLogin = new TextBox();
             lblPassword = new Label();
             txtPassword = new TextBox();
-            btnRegister = new Button();
-            lblPerference = new Label();
-            checkedGenres = new CheckedListBox();
-            checkedArtists = new CheckedListBox();
-            lblGenres = new Label();
-            lblArtists = new Label();
+            btn1 = new Button();
+            lblPassword2 = new Label();
+            txtPassword2 = new TextBox();
+            btn2 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // lblLogin
             // 
-            lblLogin.Anchor = AnchorStyles.None;
             lblLogin.AutoSize = true;
             lblLogin.BackColor = Color.Transparent;
-            lblLogin.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblLogin.ForeColor = SystemColors.ButtonHighlight;
-            lblLogin.Location = new Point(590, 90);
+            lblLogin.Location = new Point(606, 183);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(65, 23);
+            lblLogin.Size = new Size(53, 20);
             lblLogin.TabIndex = 0;
             lblLogin.Text = "логин:";
-            lblLogin.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtLogin
             // 
-            txtLogin.Anchor = AnchorStyles.None;
-            txtLogin.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLogin.Location = new Point(485, 116);
+            txtLogin.Location = new Point(496, 206);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(273, 31);
+            txtLogin.Size = new Size(282, 27);
             txtLogin.TabIndex = 1;
             // 
             // lblPassword
             // 
-            lblPassword.Anchor = AnchorStyles.None;
             lblPassword.AutoSize = true;
             lblPassword.BackColor = Color.Transparent;
-            lblPassword.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblPassword.ForeColor = SystemColors.ButtonHighlight;
-            lblPassword.Location = new Point(590, 154);
+            lblPassword.Location = new Point(606, 246);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(81, 23);
+            lblPassword.Size = new Size(63, 20);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "пароль:";
-            lblPassword.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtPassword
             // 
             txtPassword.Anchor = AnchorStyles.None;
-            txtPassword.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            txtPassword.Location = new Point(485, 180);
+            txtPassword.BackColor = SystemColors.ButtonHighlight;
+            txtPassword.Location = new Point(496, 269);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(273, 30);
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(282, 27);
             txtPassword.TabIndex = 3;
             // 
-            // btnRegister
+            // btn1
             // 
-            btnRegister.Anchor = AnchorStyles.None;
-            btnRegister.BackColor = Color.Gold;
-            btnRegister.FlatStyle = FlatStyle.Flat;
-            btnRegister.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            btnRegister.Location = new Point(531, 568);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(200, 50);
-            btnRegister.TabIndex = 4;
-            btnRegister.Text = "Зарегистрироваться";
-            btnRegister.UseVisualStyleBackColor = false;
-            btnRegister.Click += btnRegister_Click;
+            btn1.Anchor = AnchorStyles.None;
+            btn1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btn1.BackColor = Color.Transparent;
+            btn1.BackgroundImage = Properties.Resources.view;
+            btn1.BackgroundImageLayout = ImageLayout.Stretch;
+            btn1.ForeColor = Color.Cornsilk;
+            btn1.Location = new Point(784, 269);
+            btn1.Name = "btn1";
+            btn1.Size = new Size(29, 27);
+            btn1.TabIndex = 4;
+            btn1.TextAlign = ContentAlignment.MiddleRight;
+            btn1.UseVisualStyleBackColor = false;
+            btn1.Click += btn1_Click;
             // 
-            // lblPerference
+            // lblPassword2
             // 
-            lblPerference.Anchor = AnchorStyles.None;
-            lblPerference.AutoSize = true;
-            lblPerference.BackColor = Color.Transparent;
-            lblPerference.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            lblPerference.ForeColor = SystemColors.ButtonHighlight;
-            lblPerference.Location = new Point(545, 225);
-            lblPerference.Name = "lblPerference";
-            lblPerference.Size = new Size(168, 19);
-            lblPerference.TabIndex = 6;
-            lblPerference.Text = "ваши предпочтения:";
+            lblPassword2.AutoSize = true;
+            lblPassword2.BackColor = Color.Transparent;
+            lblPassword2.ForeColor = SystemColors.ButtonHighlight;
+            lblPassword2.Location = new Point(567, 314);
+            lblPassword2.Name = "lblPassword2";
+            lblPassword2.Size = new Size(140, 20);
+            lblPassword2.TabIndex = 5;
+            lblPassword2.Text = "повторите пароль:";
             // 
-            // checkedGenres
+            // txtPassword2
             // 
-            checkedGenres.Anchor = AnchorStyles.None;
-            checkedGenres.FormattingEnabled = true;
-            checkedGenres.Location = new Point(726, 285);
-            checkedGenres.Name = "checkedGenres";
-            checkedGenres.Size = new Size(354, 246);
-            checkedGenres.TabIndex = 7;
+            txtPassword2.Location = new Point(496, 346);
+            txtPassword2.Name = "txtPassword2";
+            txtPassword2.Size = new Size(282, 27);
+            txtPassword2.TabIndex = 6;
             // 
-            // checkedArtists
+            // btn2
             // 
-            checkedArtists.Anchor = AnchorStyles.None;
-            checkedArtists.FormattingEnabled = true;
-            checkedArtists.Location = new Point(188, 285);
-            checkedArtists.Name = "checkedArtists";
-            checkedArtists.Size = new Size(354, 246);
-            checkedArtists.TabIndex = 8;
+            btn2.Anchor = AnchorStyles.None;
+            btn2.BackColor = Color.Transparent;
+            btn2.BackgroundImage = Properties.Resources.hide;
+            btn2.BackgroundImageLayout = ImageLayout.Stretch;
+            btn2.Location = new Point(784, 346);
+            btn2.Name = "btn2";
+            btn2.Size = new Size(29, 27);
+            btn2.TabIndex = 7;
+            btn2.UseVisualStyleBackColor = false;
+            btn2.Click += btn2_Click;
             // 
-            // lblGenres
+            // button2
             // 
-            lblGenres.Anchor = AnchorStyles.None;
-            lblGenres.AutoSize = true;
-            lblGenres.BackColor = Color.Transparent;
-            lblGenres.ForeColor = SystemColors.ButtonHighlight;
-            lblGenres.Location = new Point(839, 247);
-            lblGenres.Name = "lblGenres";
-            lblGenres.Size = new Size(132, 20);
-            lblGenres.TabIndex = 9;
-            lblGenres.Text = "любимые жанры:";
-            // 
-            // lblArtists
-            // 
-            lblArtists.Anchor = AnchorStyles.None;
-            lblArtists.AutoSize = true;
-            lblArtists.BackColor = Color.Transparent;
-            lblArtists.ForeColor = SystemColors.ButtonHighlight;
-            lblArtists.Location = new Point(265, 247);
-            lblArtists.Name = "lblArtists";
-            lblArtists.Size = new Size(175, 20);
-            lblArtists.TabIndex = 10;
-            lblArtists.Text = "любимые исполнители:";
+            button2.BackColor = Color.Gold;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(555, 404);
+            button2.Name = "button2";
+            button2.Size = new Size(172, 45);
+            button2.TabIndex = 8;
+            button2.Text = "Продолжить";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // Registration
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaptionText;
             BackgroundImage = Properties.Resources.вход_фон;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
-            Controls.Add(lblArtists);
-            Controls.Add(lblGenres);
-            Controls.Add(checkedArtists);
-            Controls.Add(checkedGenres);
-            Controls.Add(lblPerference);
-            Controls.Add(btnRegister);
+            Controls.Add(button2);
+            Controls.Add(btn2);
+            Controls.Add(txtPassword2);
+            Controls.Add(lblPassword2);
+            Controls.Add(btn1);
             Controls.Add(txtPassword);
             Controls.Add(lblPassword);
             Controls.Add(txtLogin);
             Controls.Add(lblLogin);
-            Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
             Name = "Registration";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "Регистрация";
             ResumeLayout(false);
             PerformLayout();
@@ -188,11 +166,10 @@
         private TextBox txtLogin;
         private Label lblPassword;
         private TextBox txtPassword;
-        private Button btnRegister;
-        private Label lblPerference;
-        private CheckedListBox checkedGenres;
-        private CheckedListBox checkedArtists;
-        private Label lblGenres;
-        private Label lblArtists;
+        private Button btn1;
+        private Label lblPassword2;
+        private TextBox txtPassword2;
+        private Button btn2;
+        private Button button2;
     }
 }

@@ -1,7 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.VisualBasic.Logging;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vibe.Core.Entities;
 
@@ -9,14 +15,11 @@ namespace Vibe.Forms
 {
     public partial class Registration : Form
     {
+        private readonly ApplicationDbContext _dbContext;
         public Registration()
         {
             InitializeComponent();
-            using (var _dbContext = new ApplicationDbContext())
-            {
-                LoadArtists(_dbContext);
-                LoadGenres(_dbContext);
-            }
+            _dbContext = new ApplicationDbContext();
         }
         //метод для хэширования паролей
         private string HashPassword(string password)
@@ -32,73 +35,62 @@ namespace Vibe.Forms
                 return builder.ToString();
             }
         }
-        //Метод для загрузки исполнителей
-        private void LoadArtists(ApplicationDbContext db)
-        {
-            checkedArtists.DataSource = db.Artists.ToList();
-            checkedArtists.DisplayMember = "Name";
-        }
-        //Метод для загрузки жанров
-        private void LoadGenres(ApplicationDbContext db)
-        {
-            checkedGenres.DataSource = db.Genres.ToList();
-            checkedGenres.DisplayMember = "Name";
-        }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             using (var _dbContext = new ApplicationDbContext())
             {
                 string login = txtLogin.Text;
                 string password = txtPassword.Text;
-
+                string confirmPassword = txtPassword2.Text;
+                if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+                {
+                    MessageBox.Show("Введите логин и пароль!");
+                    return;
+                }
+                // Проверка совпадения паролей
+                if (password != confirmPassword)
+                {
+                    MessageBox.Show("Пароли не совпадают!");
+                    return;
+                }
                 var user = new User
                 {
                     Login = login,
                     PasswordHash = HashPassword(password)
                 };
-                if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
-                {
-                    MessageBox.Show("Введите логин и пароль!");
-                    return;
-                }
-                if (checkedArtists.SelectedItems.Count == 0 || checkedGenres.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Выберите хотя бы одного исполнителя и один жанр.");
-                    return;
-                }
-                // Добавляем пользователя в бд
+                // Добавляем пользователя в базу данных
                 _dbContext.Users.Add(user);
-                _dbContext.SaveChanges();
-
-                // Сохраненяем предпочтения
-                foreach (Artist selectArtist in checkedArtists.SelectedItems)
-                {
-                    _dbContext.UserPreferences.Add(new UserPreference
-                    {
-                        UserId = user.UserId,
-                        ArtistId = selectArtist.ArtistId
-                    });
-                }
-                foreach (Genre selectGenre in checkedGenres.SelectedItems)
-                {
-                    _dbContext.UserPreferences.Add(new UserPreference
-                    {
-                        UserId = user.UserId,
-                        GenreId = selectGenre.GenreId
-                    });
-                }
-
                 _dbContext.SaveChanges();
 
                 MessageBox.Show("Регистрация прошла успешно!");
                 this.Hide();
                 var firstTrack = _dbContext.Tracks.FirstOrDefault();
-           
                 SongForm songForm = new SongForm(firstTrack);
                 songForm.Show();
-               
             }
+
+        }
+        //Метод для скрытия пароля и наоборот 
+        private void PasswordVisibility(TextBox textBox, Button button)
+        {
+            if (txtPassword.PasswordChar == '*' || txtPassword2.PasswordChar == '*')
+            {
+                textBox.PasswordChar = '\0'; // Показать пароль
+            }
+            else
+            {
+                textBox.PasswordChar = '*'; // Скрыть пароль
+            }
+        }
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            PasswordVisibility(txtPassword, btn1);
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            PasswordVisibility(txtPassword2, btn2);
         }
     }
 }
