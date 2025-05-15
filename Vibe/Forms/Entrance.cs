@@ -3,6 +3,8 @@ using Vibe.Core.Entities;
 using System.Text;
 using System.Security.Cryptography;
 using Vibe.Service;
+using NLog;
+using Microsoft.VisualBasic.Logging;
 
 namespace Vibe
 {
@@ -11,9 +13,7 @@ namespace Vibe
     /// </summary>
     public partial class Entrance : Form
     {
-        /// <summary>
-        ///  конструктор формы
-        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public Entrance()
         {
             InitializeComponent();
@@ -34,33 +34,37 @@ namespace Vibe
             }
         }
         private void btnLogin_Click(object sender, EventArgs e)
-        {       
-                using (var _dbContext = new ApplicationDbContext())
+        {
+            
+            using (var _dbContext = new ApplicationDbContext())
                 {
-                    string login = txtLogin.Text;
-                    string password = txtPassword.Text;
-                    string hashedPassword = HashPassword(password);
+                    var login = txtLogin.Text;
+                    Logger.Info($"Пользователь начал попытку входа. Логин: {login}");
+                    var password = txtPassword.Text;
+                    var hashedPassword = HashPassword(password);
 
                     var user = _dbContext.Users.FirstOrDefault(u => u.Login == login);
                     if (user == null)
                     {
-                        MessageBox.Show("Пользователь не найден!");
-                        return;
+                         Logger.Warn($"Пользователь '{login}' не найден.");
+                         MessageBox.Show("Пользователь не найден!");
+                         return;
                     }
 
                     if (user.PasswordHash != hashedPassword)
                     {
-                        MessageBox.Show("Неверный пароль!");
-                        return;
+                          Logger.Warn($"Неверный пароль для пользователя '{login}'.");
+                          MessageBox.Show("Неверный пароль!");
+                          return;
                     }
-
+                    Logger.Info($"Пользователь '{login}' успешно вошёл в систему.");
                     MessageBox.Show("Вход выполнен успешно!");
 
                     
                     
 
                     OpenSongForm(user);
-                }
+            }
             
             
         }
@@ -72,33 +76,38 @@ namespace Vibe
                     var recommendationService = new RecommendationService(dbContext);
                     var recommendedTracks = recommendationService.GetRecommendedSongs(user.UserId);
 
-                    Track firstTrack = recommendedTracks?.Count > 0
-                        ? recommendedTracks[0]
-                        : new Track
-                        {
-                            Title = "Нет рекомендаций",
-                            Artist = new Artist { Name = "Неизвестный исполнитель" },
-                            AlbumArtPath = "C:\\Users\\Admin\\Pictures\\треки\\1473685252276134903.jpg"
-                        };
+                Track firstTrack;
+                  if (recommendedTracks != null && recommendedTracks.Count > 0)
+                  {
+                    firstTrack = recommendedTracks[0];
+                  }
+                  else
+                  {
+                    firstTrack = new Track
+                    {
+                        Title = "Нет рекомендаций",
+                        Artist = new Artist { Name = "Неизвестный исполнитель" },
+                        AlbumArtPath = @"C:\Users\Admin\Pictures\треки\1473685252276134903.jpg"
+                    };
+                  }
 
                     this.Hide();
                     SongForm songForm = new SongForm(firstTrack, user);
-                    songForm.FormClosed += (s, args) => this.Show(); // Show Entrance form again
+                    songForm.FormClosed += (s, args) => this.Show(); // лямбда-выражение
                     songForm.Show();
                 }
             
             
         }
 
-
-
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            Logger.Info("Открытие формы регистрации.");
             this.Hide();
-            Registration registration = new Registration();
-            registration.FormClosed += (s, args) => this.Show(); // Show Entrance form again
+            var registration = new Registration();
+            registration.FormClosed += (s, args) => this.Show(); //тоже
             registration.Show();
+
         }
         
     }

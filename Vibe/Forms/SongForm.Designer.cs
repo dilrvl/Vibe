@@ -163,7 +163,6 @@
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "SongForm";
-            Text = "Песни";
             ((System.ComponentModel.ISupportInitialize)pctrBox).EndInit();
             ResumeLayout(false);
             PerformLayout();

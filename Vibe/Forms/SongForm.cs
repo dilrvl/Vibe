@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vibe.Core.Entities;
 using Vibe.Service;
+using NLog;
 
 namespace Vibe.Forms
 {
@@ -13,22 +14,18 @@ namespace Vibe.Forms
         private readonly RecommendationService _recommendationService;
         private List<Track> recommendations;
         private int currentTrackIndex = 0;
-        /// <summary>
-        ///  конструктор формы
-        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public SongForm(Track initialTrack, User user)
         {
             InitializeComponent();
-            _currentUser = user ?? throw new ArgumentNullException(nameof(user));
+            _currentUser = user;
             _recommendationService = new RecommendationService(new ApplicationDbContext());
-
-            // Load recommendations
             LoadRecommendations();
 
-            // Set initial track
             if (initialTrack != null && recommendations.Count > 0)
             {
-                recommendations[0] = initialTrack; // Replace first track if provided
+                recommendations[0] = initialTrack; 
                 currentTrackIndex = 0;
             }
             else if (recommendations.Count == 0)
@@ -44,7 +41,7 @@ namespace Vibe.Forms
 
             UpdateDisplay();
         }
-        // Загрузка рекомендаций
+        
         // Загрузка рекомендаций
         private void LoadRecommendations()
         {
@@ -80,6 +77,7 @@ namespace Vibe.Forms
         }
         private void UpdateDisplay()
         {
+            Logger.Debug("Обновление отображения трека");
             if (recommendations == null || recommendations.Count == 0 || currentTrackIndex < 0 || currentTrackIndex >= recommendations.Count)
             {
                 lblname.Text = "Ошибка отображения";
@@ -92,57 +90,39 @@ namespace Vibe.Forms
             lblname.Text = currentTrack.Title ?? "Без названия";
             lblartist.Text = currentTrack.Artist?.Name ?? "Неизвестный исполнитель";
 
-            // Load album art if path exists
             if (!string.IsNullOrEmpty(currentTrack.AlbumArtPath) && System.IO.File.Exists(currentTrack.AlbumArtPath))
             {
                 pctrBox.Image = System.Drawing.Image.FromFile(currentTrack.AlbumArtPath);
             }
             else
             {
-                pctrBox.Image = null; // Or set a default image
+                pctrBox.Image = null; 
             }
 
             btnprevious.Enabled = currentTrackIndex > 0;
             btnnext.Enabled = currentTrackIndex < recommendations.Count - 1;
         }
 
-
-
-
         // Обработчик кнопки "Нравится"
         private void btnLike_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var currentTrack = recommendations[currentTrackIndex];
+        {       
+            var currentTrack = recommendations[currentTrackIndex];
                 
-                var isFavorited = _recommendationService.GetFavoriteTracks(_currentUser.UserId)
+            var isFavorited = _recommendationService.GetFavoriteTracks(_currentUser.UserId)
                     .Any(t => t.TrackId == currentTrack.TrackId);
+       
+            _recommendationService.AddToFavorites(_currentUser.UserId, currentTrack.TrackId);
+            MessageBox.Show("Трек добавлен в избранное!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Logger.Info($"Трек '{currentTrack.Title}' добавлен в избранное");
 
-                if (isFavorited)
-                {
-                    _recommendationService.RemoveFromFavorites(_currentUser.UserId, currentTrack.TrackId);
-                    MessageBox.Show("Трек удалён из избранного!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    _recommendationService.AddToFavorites(_currentUser.UserId, currentTrack.TrackId);
-                    MessageBox.Show("Трек добавлен в избранное!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
 
-                UpdateFavoriteButton();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
 
         // Обработчик кнопки "Не нравится"
         private void btnDislike_Click(object sender, EventArgs e)
         {
-           
+           // надо доделать
         }
 
         private void btnnext_Click(object sender, EventArgs e)
@@ -169,13 +149,6 @@ namespace Vibe.Forms
                 UpdateDisplay();
             }
         }
-        private void UpdateFavoriteButton()
-        {
-            var currentTrack = recommendations[currentTrackIndex];
-            var isFavorited = _recommendationService.GetFavoriteTracks(_currentUser.UserId)
-                .Any(t => t.TrackId == currentTrack.TrackId);
-
-            btnfavoriteSong.Text = isFavorited ? "Удалить из избранного" : "Добавить в избранное";
-        }
+        
     }
 }

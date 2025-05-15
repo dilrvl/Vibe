@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using Vibe.Core.Entities;
+using NLog;
 
 namespace Vibe.Forms
 {
@@ -10,9 +11,8 @@ namespace Vibe.Forms
     public partial class Registration : Form
     {
         private readonly ApplicationDbContext _dbContext;
-        /// <summary>
-        ///  конструктор формы
-        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public Registration()
         {
             InitializeComponent();
@@ -37,17 +37,20 @@ namespace Vibe.Forms
         {
             using (var _dbContext = new ApplicationDbContext())
             {
-                string login = txtLogin.Text;
-                string password = txtPassword.Text;
-                string confirmPassword = txtPassword2.Text;
+                var login = txtLogin.Text;
+                Logger.Info($"Пользователь начал попытку регистрации. Логин: {login}");
+                var password = txtPassword.Text;
+                var confirmPassword = txtPassword2.Text;
                 if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
                 {
+                    Logger.Warn("Пользователь не заполнил все поля.");
                     MessageBox.Show("Введите логин и пароль!");
                     return;
                 }
                 // Проверка совпадения паролей
                 if (password != confirmPassword)
                 {
+                    Logger.Warn("Пароли не совпадают для пользователя '{login}'.");
                     MessageBox.Show("Пароли не совпадают!");
                     return;
                 }
@@ -60,6 +63,7 @@ namespace Vibe.Forms
                 // Добавляем пользователя в базу данных
                 _dbContext.Users.Add(user);
                 _dbContext.SaveChanges();
+                Logger.Info($"Пользователь '{login}' успешно зарегистрирован.");
                 this.Hide();
                 Preference preference = new Preference(user);
                 preference.FormClosed += (s, args) => this.Close();
@@ -70,7 +74,7 @@ namespace Vibe.Forms
         //Метод для скрытия пароля и наоборот 
         private void PasswordVisibility(TextBox textBox, Button button)
         {
-            if (txtPassword.PasswordChar == '*' || txtPassword2.PasswordChar == '*')
+            if (textBox.PasswordChar == '*')
             {
                 textBox.PasswordChar = '\0'; // Показать пароль
             }

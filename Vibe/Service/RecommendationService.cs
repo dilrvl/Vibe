@@ -8,119 +8,270 @@ namespace Vibe.Service
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly Random _random = new Random();
-        /// <summary>
-        ///  конструктор класса
-        /// </summary>
+
         public RecommendationService(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext;
         }
 
         public List<Track> GetRecommendedSongs(int userId)
         {
             try
             {
-                if (!_dbContext.Tracks.Any())
+ 
+                bool hasTracks = false;
+                foreach (var track in _dbContext.Tracks)
                 {
-                   
+                    hasTracks = true;
+                    break;
+                }
+
+                if (!hasTracks)
+                {
                     return GetDefaultTracks();
                 }
 
-                var userPreferences = _dbContext.UserPreferences
-                    .Where(up => up.UserId == userId)
-                    .ToList();
-
+                // получить прдепочтения пользователя
+                List<UserPreference> userPreferences = new List<UserPreference>();
+                foreach (var pref in _dbContext.UserPreferences)
+                {
+                    if (pref.UserId == userId)
+                    {
+                        userPreferences.Add(pref);
+                    }
+                }
                 if (userPreferences.Count == 0)
                 {
-                    
                     return GetPopularTracks(10);
                 }
-
-                var preferredGenreIds = userPreferences
-                    .Where(up => up.GenreId.HasValue)
-                    .Select(up => up.GenreId.Value)
-                    .ToList();
-
-                var preferredArtistIds = userPreferences
-                    .Where(up => up.ArtistId.HasValue)
-                    .Select(up => up.ArtistId.Value)
-                    .ToList();
-
-               
-
-                var ratedTrackIds = _dbContext.TrackRatings
-                    .Where(tr => tr.UserId == userId)
-                    .Select(tr => tr.TrackId)
-                    .ToList();
-
-                var recommendedTracks = new List<Track>();
-
-                // 1. Tracks by preferred artists
-                if (preferredArtistIds.Any())
+                List<int> preferredGenreIds = new List<int>();
+                foreach (var pref in userPreferences)
                 {
-                    var artistTracks = _dbContext.Tracks
-                        .Include(t => t.Artist)
-                        .Where(t => preferredArtistIds.Contains(t.ArtistId))
-                        .Where(t => !ratedTrackIds.Contains(t.TrackId))
-                        .OrderByDescending(t => t.PopularityScore)
-                        .Take(5)
-                        .ToList();
+                    if (pref.GenreId.HasValue)
+                    {
+                        preferredGenreIds.Add(pref.GenreId.Value);
+                    }
+                }
+                List<int> preferredArtistIds = new List<int>();
+                foreach (var pref in userPreferences)
+                {
+                    if (pref.ArtistId.HasValue)
+                    {
+                        preferredArtistIds.Add(pref.ArtistId.Value);
+                    }
+                }
+                List<int> ratedTrackIds = new List<int>();
+                foreach (var rating in _dbContext.TrackRatings)
+                {
+                    if (rating.UserId == userId)
+                    {
+                        ratedTrackIds.Add(rating.TrackId);
+                    }
+                }
+                List<Track> recommendedTracks = new List<Track>();
+                if (preferredArtistIds.Count > 0)
+                {
+                    List<Track> artistTracks = new List<Track>();
+                    foreach (var track in _dbContext.Tracks)
+                    {
 
-                   
-                    recommendedTracks.AddRange(artistTracks);
+                        track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
+
+                        bool isPreferredArtist = false;
+                        foreach (var artistId in preferredArtistIds)
+                        {
+                            if (track.ArtistId == artistId)
+                            {
+                                isPreferredArtist = true;
+                                break;
+                            }
+                        }
+                        bool isRated = false;
+                        foreach (var ratedId in ratedTrackIds)
+                        {
+                            if (track.TrackId == ratedId)
+                            {
+                                isRated = true;
+                                break;
+                            }
+                        }
+                        if (isPreferredArtist && !isRated)
+                        {
+                            artistTracks.Add(track);
+                        }
+                    }
+                    for (int i = 0; i < artistTracks.Count - 1; i++)
+                    {
+                        for (int j = i + 1; j < artistTracks.Count; j++)
+                        {
+                            if (artistTracks[i].PopularityScore < artistTracks[j].PopularityScore)
+                            {
+                                var temp = artistTracks[i];
+                                artistTracks[i] = artistTracks[j];
+                                artistTracks[j] = temp;
+                            }
+                        }
+                    }
+                    int count = Math.Min(5, artistTracks.Count);
+                    for (int i = 0; i < count; i++)
+                    {
+                        recommendedTracks.Add(artistTracks[i]);
+                    }
                 }
 
-                // 2. Tracks by preferred genres
-                if (preferredGenreIds.Any() && recommendedTracks.Count < 10)
+                if (preferredGenreIds.Count > 0 && recommendedTracks.Count < 10)
                 {
-                    var genreTracks = _dbContext.Tracks
-                        .Include(t => t.Artist)
-                        .Where(t => preferredGenreIds.Contains(t.GenreId))
-                        .Where(t => !ratedTrackIds.Contains(t.TrackId))
-                        .Where(t => !recommendedTracks.Select(rt => rt.TrackId).Contains(t.TrackId))
-                        .OrderByDescending(t => t.PopularityScore)
-                        .Take(10 - recommendedTracks.Count)
-                        .ToList();
+                    List<Track> genreTracks = new List<Track>();
+                    foreach (var track in _dbContext.Tracks)
+                    {
+                        track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
 
-                    
-                    recommendedTracks.AddRange(genreTracks);
+                        bool isPreferredGenre = false;
+                        foreach (var genreId in preferredGenreIds)
+                        {
+                            if (track.GenreId == genreId)
+                            {
+                                isPreferredGenre = true;
+                                break;
+                            }
+                        }
+
+                        bool isRated = false;
+                        foreach (var ratedId in ratedTrackIds)
+                        {
+                            if (track.TrackId == ratedId)
+                            {
+                                isRated = true;
+                                break;
+                            }
+                        }
+                        bool alreadyRecommended = false;
+                        foreach (var recTrack in recommendedTracks)
+                        {
+                            if (track.TrackId == recTrack.TrackId)
+                            {
+                                alreadyRecommended = true;
+                                break;
+                            }
+                        }
+                        if (isPreferredGenre && !isRated && !alreadyRecommended)
+                        {
+                            genreTracks.Add(track);
+                        }
+                    }
+                    for (int i = 0; i < genreTracks.Count - 1; i++)
+                    {
+                        for (int j = i + 1; j < genreTracks.Count; j++)
+                        {
+                            if (genreTracks[i].PopularityScore < genreTracks[j].PopularityScore)
+                            {
+                                var temp = genreTracks[i];
+                                genreTracks[i] = genreTracks[j];
+                                genreTracks[j] = temp;
+                            }
+                        }
+                    }
+                    int remaining = 10 - recommendedTracks.Count;
+                    int count = Math.Min(remaining, genreTracks.Count);
+                    for (int i = 0; i < count; i++)
+                    {
+                        recommendedTracks.Add(genreTracks[i]);
+                    }
                 }
-
-                // 3. Fill with popular tracks if needed
                 if (recommendedTracks.Count < 10)
                 {
-                    var popularTracks = _dbContext.Tracks
-                        .Include(t => t.Artist)
-                        .Where(t => !ratedTrackIds.Contains(t.TrackId))
-                        .Where(t => !recommendedTracks.Select(rt => rt.TrackId).Contains(t.TrackId))
-                        .OrderByDescending(t => t.PopularityScore)
-                        .Take(10 - recommendedTracks.Count)
-                        .ToList();
+                    List<Track> popularTracks = new List<Track>();
+                    foreach (var track in _dbContext.Tracks)
+                    {
+                        track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
 
-                   
-                    recommendedTracks.AddRange(popularTracks);
+                        bool isRated = false;
+                        foreach (var ratedId in ratedTrackIds)
+                        {
+                            if (track.TrackId == ratedId)
+                            {
+                                isRated = true;
+                                break;
+                            }
+                        }
+
+                        bool alreadyRecommended = false;
+                        foreach (var recTrack in recommendedTracks)
+                        {
+                            if (track.TrackId == recTrack.TrackId)
+                            {
+                                alreadyRecommended = true;
+                                break;
+                            }
+                        }
+
+                        if (!isRated && !alreadyRecommended)
+                        {
+                            popularTracks.Add(track);
+                        }
+                    }
+                    for (int i = 0; i < popularTracks.Count - 1; i++)
+                    {
+                        for (int j = i + 1; j < popularTracks.Count; j++)
+                        {
+                            if (popularTracks[i].PopularityScore < popularTracks[j].PopularityScore)
+                            {
+                                var temp = popularTracks[i];
+                                popularTracks[i] = popularTracks[j];
+                                popularTracks[j] = temp;
+                            }
+                        }
+                    }
+                    int remaining = 10 - recommendedTracks.Count;
+                    int count = Math.Min(remaining, popularTracks.Count);
+                    for (int i = 0; i < count; i++)
+                    {
+                        recommendedTracks.Add(popularTracks[i]);
+                    }
                 }
-
-                if (!recommendedTracks.Any())
+                bool hasRecommendations = false;
+                foreach (var track in recommendedTracks)
                 {
-                   
-                    recommendedTracks = _dbContext.Tracks
-                        .Include(t => t.Artist)
-                        .Take(10)
-                        .ToList();
+                    hasRecommendations = true;
+                    break;
                 }
-
-                if (!recommendedTracks.Any())
+                if (!hasRecommendations)
                 {
-                   
+                    recommendedTracks.Clear();
+                    int count = 0;
+                    foreach (var track in _dbContext.Tracks)
+                    {
+                        track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
+                        recommendedTracks.Add(track);
+                        count++;
+                        if (count >= 10)
+                        {
+                            break;
+                        }
+                    }
+                }
+                hasRecommendations = false;
+                foreach (var track in recommendedTracks)
+                {
+                    hasRecommendations = true;
+                    break;
+                }
+                if (!hasRecommendations)
+                {
                     return GetDefaultTracks();
                 }
+                List<Track> shuffledTracks = new List<Track>();
+                while (recommendedTracks.Count > 0)
+                {
+                    int index = _random.Next(recommendedTracks.Count);
+                    shuffledTracks.Add(recommendedTracks[index]);
+                    recommendedTracks.RemoveAt(index);
+                }
 
-                return recommendedTracks.OrderBy(x => _random.Next()).ToList();
+                return shuffledTracks;
             }
             catch (Exception ex)
             {
-               
                 return GetDefaultTracks();
             }
         }
@@ -129,17 +280,43 @@ namespace Vibe.Service
         {
             try
             {
-                var tracks = _dbContext.Tracks
-                    .Include(t => t.Artist)
-                    .OrderByDescending(t => t.PopularityScore)
-                    .Take(count)
-                    .ToList();
+                List<Track> tracks = new List<Track>();
+                foreach (var track in _dbContext.Tracks)
+                {
+                    track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
+                    tracks.Add(track);
+                }
 
-                return tracks.Any() ? tracks : GetDefaultTracks();
+                // Sort by PopularityScore descending
+                for (int i = 0; i < tracks.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < tracks.Count; j++)
+                    {
+                        if (tracks[i].PopularityScore < tracks[j].PopularityScore)
+                        {
+                            var temp = tracks[i];
+                            tracks[i] = tracks[j];
+                            tracks[j] = temp;
+                        }
+                    }
+                }
+                List<Track> result = new List<Track>();
+                int maxCount = Math.Min(count, tracks.Count);
+                for (int i = 0; i < maxCount; i++)
+                {
+                    result.Add(tracks[i]);
+                }
+
+                bool hasTracks = false;
+                foreach (var track in result)
+                {
+                    hasTracks = true;
+                    break;
+                }
+                return hasTracks ? result : GetDefaultTracks();
             }
             catch (Exception ex)
             {
-               
                 return GetDefaultTracks();
             }
         }
@@ -148,86 +325,133 @@ namespace Vibe.Service
         {
             try
             {
-                if (!_dbContext.Tracks.Any())
+                bool hasTracks = false;
+                foreach (var track in _dbContext.Tracks)
                 {
-                    return new List<Track>
-                    {
-                        new Track
-                        {
-                            TrackId = -1,
-                            Title = "Нет доступных треков",
-                            Artist = new Artist { ArtistId = -1, Name = "Неизвестный исполнитель" },
-                            AlbumArtPath = "C:\\Users\\Admin\\Pictures\\треки\\1473685252276134903.jpg",
-                            PopularityScore = 50
-                        }
-                    };
+                    hasTracks = true;
+                    break;
                 }
 
-                return _dbContext.Tracks
-                    .Include(t => t.Artist)
-                    .Take(10)
-                    .ToList();
-            }
-            catch (Exception ex)
-            {
-              
-                return new List<Track>
+                if (!hasTracks)
                 {
-                    new Track
+                    List<Track> defaultTracks = new List<Track>();
+                    defaultTracks.Add(new Track
                     {
                         TrackId = -1,
-                        Title = "Ошибка загрузки",
+                        Title = "Нет доступных треков",
                         Artist = new Artist { ArtistId = -1, Name = "Неизвестный исполнитель" },
                         AlbumArtPath = "C:\\Users\\Admin\\Pictures\\треки\\1473685252276134903.jpg",
                         PopularityScore = 50
+                    });
+                    return defaultTracks;
+                }
+
+                List<Track> result = new List<Track>();
+                int count = 0;
+                foreach (var track in _dbContext.Tracks)
+                {
+                    track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
+                    result.Add(track);
+                    count++;
+                    if (count >= 10)
+                    {
+                        break;
                     }
-                };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                List<Track> errorTracks = new List<Track>();
+                errorTracks.Add(new Track
+                {
+                    TrackId = -1,
+                    Title = "Ошибка загрузки",
+                    Artist = new Artist { ArtistId = -1, Name = "Неизвестный исполнитель" },
+                    AlbumArtPath = "C:\\Users\\Admin\\Pictures\\треки\\1473685252276134903.jpg",
+                    PopularityScore = 50
+                });
+                return errorTracks;
             }
         }
 
         public void AddToFavorites(int userId, int trackId)
-{
-    try
-    {
-        if (!_dbContext.Users.Any(u => u.UserId == userId))
         {
-            throw new InvalidOperationException($"Пользователь с ID {userId} не найден.");
+            try
+            {
+                bool userExists = false;
+                foreach (var user in _dbContext.Users)
+                {
+                    if (user.UserId == userId)
+                    {
+                        userExists = true;
+                        break;
+                    }
+                }
+
+                if (!userExists)
+                {
+                    throw new InvalidOperationException($"Пользователь с ID {userId} не найден.");
+                }
+
+                bool trackExists = false;
+                foreach (var track in _dbContext.Tracks)
+                {
+                    if (track.TrackId == trackId)
+                    {
+                        trackExists = true;
+                        break;
+                    }
+                }
+                if (!trackExists)
+                {
+                    throw new InvalidOperationException($"Трек с ID {trackId} не найден.");
+                }
+
+                bool alreadyRated = false;
+                foreach (var rating in _dbContext.TrackRatings)
+                {
+                    if (rating.UserId == userId && rating.TrackId == trackId)
+                    {
+                        alreadyRated = true;
+                        break;
+                    }
+                }
+
+                if (alreadyRated)
+                {
+                    return;
+                }
+
+                _dbContext.TrackRatings.Add(new TrackRating
+                {
+                    UserId = userId,
+                    TrackId = trackId,
+                    Rating = 1
+                });
+
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
-
-        if (!_dbContext.Tracks.Any(t => t.TrackId == trackId))
-        {
-            throw new InvalidOperationException($"Трек с ID {trackId} не найден.");
-        }
-
-        if (_dbContext.TrackRatings.Any(tr => tr.UserId == userId && tr.TrackId == trackId))
-        {
-            
-            return;
-        }
-
-        _dbContext.TrackRatings.Add(new TrackRating
-        {
-            UserId = userId,
-            TrackId = trackId,
-            Rating = 1 // Set Rating to 1 to indicate favorite
-        });
-
-        _dbContext.SaveChanges();
-        
-    }
-    catch (Exception ex)
-    {
-        
-        throw;
-    }
-}
 
         public void RemoveFromFavorites(int userId, int trackId)
         {
             try
             {
-                var favorite = _dbContext.TrackRatings
-                    .FirstOrDefault(f => f.UserId == userId && f.TrackId == trackId);
+                TrackRating favorite = null;
+                foreach (var rating in _dbContext.TrackRatings)
+                {
+                    if (rating.UserId == userId && rating.TrackId == trackId)
+                    {
+                        favorite = rating;
+                        break;
+                    }
+                }
 
                 if (favorite != null)
                 {
@@ -237,7 +461,6 @@ namespace Vibe.Service
             }
             catch (Exception ex)
             {
-              
             }
         }
 
@@ -245,20 +468,60 @@ namespace Vibe.Service
         {
             try
             {
-                var favoriteTracks = _dbContext.TrackRatings
-                    .Where(tr => tr.UserId == userId && tr.Rating == 1) // Filter for favorited tracks (Rating = 1)
-                    .Select(tr => tr.Track)
-                    .Include(t => t.Artist)
-                    .Distinct()
-                    .ToList();
+                List<Track> favoriteTracks = new List<Track>();
+                List<int> addedTrackIds = new List<int>(); 
 
-                favoriteTracks = favoriteTracks.Where(t => t != null).ToList();
-              
-                return favoriteTracks;
+                foreach (var rating in _dbContext.TrackRatings)
+                {
+                    if (rating.UserId == userId && rating.Rating == 1)
+                    {
+                        Track track = null;
+                        foreach (var t in _dbContext.Tracks)
+                        {
+                            if (t.TrackId == rating.TrackId)
+                            {
+                                track = t;
+                                break;
+                            }
+                        }
+
+                        if (track != null)
+                        {
+                            track.Artist = _dbContext.Artists.FirstOrDefault(a => a.ArtistId == track.ArtistId);
+
+                            bool alreadyAdded = false;
+                            foreach (var addedId in addedTrackIds)
+                            {
+                                if (addedId == track.TrackId)
+                                {
+                                    alreadyAdded = true;
+                                    break;
+                                }
+                            }
+
+                            if (!alreadyAdded)
+                            {
+                                favoriteTracks.Add(track);
+                                addedTrackIds.Add(track.TrackId);
+                            }
+                        }
+                    }
+                }
+
+
+                List<Track> filteredTracks = new List<Track>();
+                foreach (var track in favoriteTracks)
+                {
+                    if (track != null)
+                    {
+                        filteredTracks.Add(track);
+                    }
+                }
+
+                return filteredTracks;
             }
             catch (Exception ex)
             {
-               
                 return new List<Track>();
             }
         }
@@ -267,13 +530,26 @@ namespace Vibe.Service
         {
             try
             {
-                var existingPreferences = _dbContext.UserPreferences
-                    .Where(up => up.UserId == userId)
-                    .ToList();
+                List<UserPreference> existingPreferences = new List<UserPreference>();
+                foreach (var pref in _dbContext.UserPreferences)
+                {
+                    if (pref.UserId == userId)
+                    {
+                        existingPreferences.Add(pref);
+                    }
+                }
 
-                _dbContext.UserPreferences.RemoveRange(existingPreferences);
+                foreach (var pref in existingPreferences)
+                {
+                    _dbContext.UserPreferences.Remove(pref);
+                }
 
-                foreach (var genreId in genreIds ?? new List<int>())
+                if (genreIds == null)
+                {
+                    genreIds = new List<int>();
+                }
+
+                foreach (var genreId in genreIds)
                 {
                     _dbContext.UserPreferences.Add(new UserPreference
                     {
@@ -283,7 +559,12 @@ namespace Vibe.Service
                     });
                 }
 
-                foreach (var artistId in artistIds ?? new List<int>())
+                if (artistIds == null)
+                {
+                    artistIds = new List<int>();
+                }
+
+                foreach (var artistId in artistIds)
                 {
                     _dbContext.UserPreferences.Add(new UserPreference
                     {
@@ -297,7 +578,6 @@ namespace Vibe.Service
             }
             catch (Exception ex)
             {
-               
                 throw;
             }
         }
