@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
+
 namespace Vibe.Core.Entities
 {
+    /// <summary>
+    ///  Таблица с жанрами
+    /// </summary>
     public record Genre
     {
         [Key]

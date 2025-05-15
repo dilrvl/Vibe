@@ -123,6 +123,16 @@ namespace Vibe.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Mask_group__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Mask group (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Rectangle_7 {
             get {
                 object obj = ResourceManager.GetObject("Rectangle 7", resourceCulture);

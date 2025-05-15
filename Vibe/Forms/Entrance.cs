@@ -1,15 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Vibe.Forms;
+﻿using Vibe.Forms;
 using Vibe.Core.Entities;
-using System;
-using System.Windows.Forms;
 using System.Text;
 using System.Security.Cryptography;
+using Vibe.Service;
 
 namespace Vibe
 {
+    /// <summary>
+    ///  форма входа
+    /// </summary>
     public partial class Entrance : Form
     {
+        /// <summary>
+        ///  конструктор формы
+        /// </summary>
         public Entrance()
         {
             InitializeComponent();
@@ -30,48 +34,72 @@ namespace Vibe
             }
         }
         private void btnLogin_Click(object sender, EventArgs e)
-        {
-            using (var _dbContext = new ApplicationDbContext())
-            {
-                /*Добавление экземпляров
-                _dbContext.Tracks.Add(new Track { Title = "Popular", ArtistId = 6, GenreId = 2, AlbumArtPath = @"C:\Users\Admin\Pictures\images(1).jpg" });
-                _dbContext.SaveChanges();*/
-                
-
-                // Получение логина и пароля ( нужно будет для хранения и проверки в бд!!)
-                string login = txtLogin.Text;
-                string password = txtPassword.Text;
-                // хэшируем введённый пароль и сравниваем с сохранённым
-                string hashedPassword = HashPassword(password);
-
-                var user = _dbContext.Users.FirstOrDefault(u => u.Login == login);
-                if (user == null)
+        {       
+                using (var _dbContext = new ApplicationDbContext())
                 {
-                    MessageBox.Show("Пользователь не найден!");
-                    return;
-                }
-                // Проверка пароля
-                if (user.PasswordHash != hashedPassword)
-                {
+                    string login = txtLogin.Text;
+                    string password = txtPassword.Text;
+                    string hashedPassword = HashPassword(password);
 
-                    MessageBox.Show("Неверный пароль!");
-                    return;
+                    var user = _dbContext.Users.FirstOrDefault(u => u.Login == login);
+                    if (user == null)
+                    {
+                        MessageBox.Show("Пользователь не найден!");
+                        return;
+                    }
+
+                    if (user.PasswordHash != hashedPassword)
+                    {
+                        MessageBox.Show("Неверный пароль!");
+                        return;
+                    }
+
+                    MessageBox.Show("Вход выполнен успешно!");
+
+                    
+                    
+
+                    OpenSongForm(user);
                 }
-                // Успешный вход
-                MessageBox.Show("Вход выполнен успешно!");
-                this.Close();
-                var firstTrack = _dbContext.Tracks.Include(t => t.Artist).FirstOrDefault();
-                SongForm songForm = new SongForm(firstTrack);
-                songForm.Show();
-                
-            }
+            
+            
         }
-        
+        private void OpenSongForm(User user)
+        {
+            
+                using (var dbContext = new ApplicationDbContext())
+                {
+                    var recommendationService = new RecommendationService(dbContext);
+                    var recommendedTracks = recommendationService.GetRecommendedSongs(user.UserId);
+
+                    Track firstTrack = recommendedTracks?.Count > 0
+                        ? recommendedTracks[0]
+                        : new Track
+                        {
+                            Title = "Нет рекомендаций",
+                            Artist = new Artist { Name = "Неизвестный исполнитель" },
+                            AlbumArtPath = "C:\\Users\\Admin\\Pictures\\треки\\1473685252276134903.jpg"
+                        };
+
+                    this.Hide();
+                    SongForm songForm = new SongForm(firstTrack, user);
+                    songForm.FormClosed += (s, args) => this.Show(); // Show Entrance form again
+                    songForm.Show();
+                }
+            
+            
+        }
+
+
+
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
             this.Hide();
             Registration registration = new Registration();
+            registration.FormClosed += (s, args) => this.Show(); // Show Entrance form again
             registration.Show();
         }
+        
     }
 }

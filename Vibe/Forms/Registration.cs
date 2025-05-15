@@ -1,21 +1,18 @@
-﻿using Microsoft.VisualBasic.Logging;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Vibe.Core.Entities;
 
 namespace Vibe.Forms
 {
+    /// <summary>
+    ///  форма регистрации
+    /// </summary>
     public partial class Registration : Form
     {
         private readonly ApplicationDbContext _dbContext;
+        /// <summary>
+        ///  конструктор формы
+        /// </summary>
         public Registration()
         {
             InitializeComponent();
@@ -59,15 +56,14 @@ namespace Vibe.Forms
                     Login = login,
                     PasswordHash = HashPassword(password)
                 };
+
                 // Добавляем пользователя в базу данных
                 _dbContext.Users.Add(user);
                 _dbContext.SaveChanges();
-
-                MessageBox.Show("Регистрация прошла успешно!");
                 this.Hide();
-                var firstTrack = _dbContext.Tracks.FirstOrDefault();
-                SongForm songForm = new SongForm(firstTrack);
-                songForm.Show();
+                Preference preference = new Preference(user);
+                preference.FormClosed += (s, args) => this.Close();
+                preference.Show();
             }
 
         }

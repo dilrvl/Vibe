@@ -99,6 +99,7 @@
             btnprevious.Size = new Size(32, 30);
             btnprevious.TabIndex = 4;
             btnprevious.UseVisualStyleBackColor = false;
+            btnprevious.Click += btnprevious_Click;
             // 
             // btnLike
             // 

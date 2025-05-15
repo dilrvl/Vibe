@@ -3,6 +3,9 @@ using System.Xml.Linq;
 
 namespace Vibe.Core.Entities
 {
+    /// <summary>
+    ///  Таблица исполнителей
+    /// </summary>
     public record Artist
     {
         [Key]

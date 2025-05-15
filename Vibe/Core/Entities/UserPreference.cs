@@ -3,6 +3,9 @@ using System.Xml.Linq;
 
 namespace Vibe.Core.Entities
 {
+    /// <summary>
+    ///  предпочтениями пользователя
+    /// </summary>
     public record UserPreference
     {
         [Key]

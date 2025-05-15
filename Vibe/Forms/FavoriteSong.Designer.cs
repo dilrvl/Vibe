@@ -28,7 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panelMain = new Panel();
+            labelTitle = new Label();
+            buttonBack = new Button();
+            panelTracks = new Panel();
+            panelMain.SuspendLayout();
             SuspendLayout();
+            // 
+            // panelMain
+            // 
+            panelMain.BackColor = Color.Gray;
+            panelMain.Controls.Add(labelTitle);
+            panelMain.Location = new Point(195, 40);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(851, 68);
+            panelMain.TabIndex = 0;
+            // 
+            // labelTitle
+            // 
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelTitle.ForeColor = Color.Gold;
+            labelTitle.Location = new Point(339, 20);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(132, 24);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "ИЗБРАННОЕ";
+            // 
+            // buttonBack
+            // 
+            buttonBack.BackColor = Color.Transparent;
+            buttonBack.BackgroundImage = Properties.Resources.Mask_group__1_;
+            buttonBack.BackgroundImageLayout = ImageLayout.Stretch;
+            buttonBack.Location = new Point(21, 21);
+            buttonBack.Name = "buttonBack";
+            buttonBack.Size = new Size(50, 39);
+            buttonBack.TabIndex = 2;
+            buttonBack.UseVisualStyleBackColor = false;
+            buttonBack.Click += buttonBack_Click;
+            // 
+            // panelTracks
+            // 
+            panelTracks.BackColor = SystemColors.ActiveBorder;
+            panelTracks.Location = new Point(194, 108);
+            panelTracks.Name = "panelTracks";
+            panelTracks.Size = new Size(852, 446);
+            panelTracks.TabIndex = 3;
             // 
             // FavoriteSong
             // 
@@ -37,13 +82,24 @@
             BackgroundImage = Properties.Resources.песни_фон1;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(panelTracks);
+            Controls.Add(buttonBack);
+            Controls.Add(panelMain);
             DoubleBuffered = true;
             MaximizeBox = false;
             Name = "FavoriteSong";
-            Text = "Избраное";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Избранное";
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panelMain;
+        private Label labelTitle;
+        private Button buttonBack;
+        private Panel panelTracks;
     }
 }

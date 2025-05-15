@@ -86,7 +86,7 @@
             btn1.BackgroundImage = Properties.Resources.view;
             btn1.BackgroundImageLayout = ImageLayout.Stretch;
             btn1.ForeColor = Color.Cornsilk;
-            btn1.Location = new Point(784, 269);
+            btn1.Location = new Point(749, 269);
             btn1.Name = "btn1";
             btn1.Size = new Size(29, 27);
             btn1.TabIndex = 4;
@@ -118,7 +118,7 @@
             btn2.BackColor = Color.Transparent;
             btn2.BackgroundImage = Properties.Resources.hide;
             btn2.BackgroundImageLayout = ImageLayout.Stretch;
-            btn2.Location = new Point(784, 346);
+            btn2.Location = new Point(749, 346);
             btn2.Name = "btn2";
             btn2.Size = new Size(29, 27);
             btn2.TabIndex = 7;

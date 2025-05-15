@@ -3,6 +3,9 @@ using System.Xml.Linq;
 
 namespace Vibe.Core.Entities
 {
+    /// <summary>
+    ///  Таблица с треками
+    /// </summary>
     public record Track
     {
         [Key]
