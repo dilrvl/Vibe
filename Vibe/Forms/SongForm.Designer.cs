@@ -36,7 +36,9 @@
             btnLike = new Button();
             btnDislike = new Button();
             btnfavoriteSong = new Button();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pctrBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pctrBox
@@ -75,26 +77,26 @@
             // 
             // btnnext
             // 
-            btnnext.BackColor = SystemColors.ButtonHighlight;
-            btnnext.BackgroundImage = Properties.Resources.d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953__1_2;
+            btnnext.BackColor = Color.Black;
+            btnnext.BackgroundImage = Properties.Resources.istockphoto_1470459331_612x612__1_;
             btnnext.BackgroundImageLayout = ImageLayout.Stretch;
             btnnext.FlatStyle = FlatStyle.Flat;
-            btnnext.ForeColor = SystemColors.ButtonHighlight;
-            btnnext.Location = new Point(648, 469);
+            btnnext.ForeColor = SystemColors.ActiveCaptionText;
+            btnnext.Location = new Point(656, 477);
             btnnext.Name = "btnnext";
-            btnnext.Size = new Size(32, 30);
+            btnnext.Size = new Size(34, 30);
             btnnext.TabIndex = 3;
             btnnext.UseVisualStyleBackColor = false;
             btnnext.Click += btnnext_Click;
             // 
             // btnprevious
             // 
-            btnprevious.BackColor = SystemColors.ButtonHighlight;
-            btnprevious.BackgroundImage = Properties.Resources.d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953__1_1;
+            btnprevious.BackColor = Color.Transparent;
+            btnprevious.BackgroundImage = Properties.Resources.istockphoto_1470459331_612x612;
             btnprevious.BackgroundImageLayout = ImageLayout.Stretch;
             btnprevious.FlatStyle = FlatStyle.Flat;
-            btnprevious.ForeColor = SystemColors.ButtonHighlight;
-            btnprevious.Location = new Point(579, 469);
+            btnprevious.ForeColor = SystemColors.ActiveCaptionText;
+            btnprevious.Location = new Point(579, 477);
             btnprevious.Name = "btnprevious";
             btnprevious.Size = new Size(32, 30);
             btnprevious.TabIndex = 4;
@@ -139,11 +141,20 @@
             btnfavoriteSong.ForeColor = SystemColors.ControlLightLight;
             btnfavoriteSong.Location = new Point(3, 12);
             btnfavoriteSong.Name = "btnfavoriteSong";
-            btnfavoriteSong.Size = new Size(89, 85);
+            btnfavoriteSong.Size = new Size(75, 68);
             btnfavoriteSong.TabIndex = 7;
             btnfavoriteSong.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnfavoriteSong.UseVisualStyleBackColor = false;
             btnfavoriteSong.Click += btnfavoriteSong_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.player_button;
+            pictureBox1.Location = new Point(485, 461);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(288, 10);
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // SongForm
             // 
@@ -152,6 +163,7 @@
             BackgroundImage = Properties.Resources.песни_фон;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(pictureBox1);
             Controls.Add(btnfavoriteSong);
             Controls.Add(btnDislike);
             Controls.Add(btnLike);
@@ -164,6 +176,7 @@
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "SongForm";
             ((System.ComponentModel.ISupportInitialize)pctrBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,5 +191,6 @@
         private Button btnLike;
         private Button btnDislike;
         private Button btnfavoriteSong;
+        private PictureBox pictureBox1;
     }
 }

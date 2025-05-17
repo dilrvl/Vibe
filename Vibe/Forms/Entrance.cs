@@ -33,6 +33,7 @@ namespace Vibe
                 return builder.ToString();
             }
         }
+        
         private void btnLogin_Click(object sender, EventArgs e)
         {
             
@@ -57,7 +58,8 @@ namespace Vibe
                           MessageBox.Show("Неверный пароль!");
                           return;
                     }
-                    Logger.Info($"Пользователь '{login}' успешно вошёл в систему.");
+                    
+                     Logger.Info($"Пользователь '{login}' успешно вошёл в систему.");
                     MessageBox.Show("Вход выполнен успешно!");
 
                     

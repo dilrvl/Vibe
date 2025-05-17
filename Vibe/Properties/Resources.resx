@@ -118,40 +118,88 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Frame 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Frame 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="вход фон" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\вход фон.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="песни фон" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\песни фон.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="free-icon-musical-8060996" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-musical-8060996.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rectangle 7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rectangle 7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="view" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="free-icon-musical-8197113" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-musical-8197113.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="player button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\player button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="free-icon-musical-18973377" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-musical-18973377.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-shaker-10192184" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-shaker-10192184.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-mariachi-1598027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-mariachi-1598027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="istockphoto-1470459331-612x612" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\istockphoto-1470459331-612x612.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frame 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Frame 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="вход фон" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\вход фон.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="песни фон1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\песни фон.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-rock-man-485615" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-rock-man-485615.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-musical-symbol-16777913" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-musical-symbol-16777913.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mask group (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mask group (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="песни фон" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\песни фон.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-vaporwave-4198224" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-vaporwave-4198224.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mask group (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mask group (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="istockphoto-1470459331-612x6121" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\istockphoto-1470459331-612x6121.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="view" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free-icon-musical-16341730 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free-icon-musical-16341730 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d5f5bbdafd2c2cfa9b7f8c4918784865a7eef953 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="istockphoto-1470459331-612x612 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\istockphoto-1470459331-612x612 (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Снимок экрана 2025-05-17 035848" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Снимок экрана 2025-05-17 035848.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

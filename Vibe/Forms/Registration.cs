@@ -54,6 +54,13 @@ namespace Vibe.Forms
                     MessageBox.Show("Пароли не совпадают!");
                     return;
                 }
+                // Проверяем, существует ли пользователь с таким логином
+                if (_dbContext.Users.Any(u => u.Login == login))
+                {
+                    Logger.Warn($"Попытка регистрации с уже существующим логином: {login}");
+                    MessageBox.Show("Пользователь с таким логином уже существует!");
+                    return;
+                }
                 var user = new User
                 {
                     Login = login,

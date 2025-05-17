@@ -121,9 +121,75 @@ namespace Vibe.Forms
 
         // Обработчик кнопки "Не нравится"
         private void btnDislike_Click(object sender, EventArgs e)
-        {
-           // надо доделать
+        {  
+            if (recommendations == null || recommendations.Count == 0 || currentTrackIndex < 0 || currentTrackIndex >= recommendations.Count)
+            {
+                MessageBox.Show("Нет доступного трека для дизлайка.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var currentTrack = recommendations[currentTrackIndex];
+
+            // Убедимся, что такой трек ещё не добавлен как дизлайк
+            var existingRating = _recommendationService.GetFavoriteTracks(_currentUser.UserId)
+                .FirstOrDefault(t => t.TrackId == currentTrack.TrackId);
+
+            // Если он был в избранном — удалим его
+            if (existingRating != null)
+            {
+                _recommendationService.RemoveFromFavorites(_currentUser.UserId, currentTrack.TrackId);
+            }
+
+            // Добавляем отрицательный рейтинг (или просто помечаем, что пользователь не любит этот трек)
+            try
+            {
+                // Предположим, что Rating = -1 — это дизлайк
+                using (var context = new ApplicationDbContext())
+                {
+                    var existingRatingEntry = context.TrackRatings
+                        .FirstOrDefault(r => r.UserId == _currentUser.UserId && r.TrackId == currentTrack.TrackId);
+
+                    if (existingRatingEntry != null)
+                    {
+                        existingRatingEntry.Rating = -1; // Обновляем существующую запись
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        context.TrackRatings.Add(new TrackRating
+                        {
+                            UserId = _currentUser.UserId,
+                            TrackId = currentTrack.TrackId,
+                            Rating = -1
+                        });
+                        context.SaveChanges();
+                    }
+                }
+
+                Logger.Info($"Трек '{currentTrack.Title}' помечен как 'Не нравится'");
+                MessageBox.Show("Трек пропущен!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Перезагружаем рекомендации без этого трека
+                LoadRecommendations();
+
+                // Если после перезагрузки есть рекомендации — начинаем с первой
+                if (recommendations.Count > 0)
+                {
+                    currentTrackIndex = 0;
+                    UpdateDisplay();
+                }
+                else
+                {
+                    MessageBox.Show("Больше нет рекомендаций.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении дизлайка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex, "Ошибка при сохранении дизлайка");
+            }
         }
+        
 
         private void btnnext_Click(object sender, EventArgs e)
         {

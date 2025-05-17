@@ -31,38 +31,38 @@
             lblGenres = new Label();
             lblTitle = new Label();
             panelGenres = new Panel();
-            pictureBoxPop = new PictureBox();
-            labelPop = new Label();
-            pictureBoxInRap = new PictureBox();
-            pictureBoxIndi = new PictureBox();
-            pictureBoxRapHipHop = new PictureBox();
-            pictureBoxWorld = new PictureBox();
-            labelRap = new Label();
-            labelIndi = new Label();
-            labelRapHipHop = new Label();
-            labelWorld = new Label();
-            pictureBoxRock = new PictureBox();
-            pictureBoxElectronic = new PictureBox();
-            pictureBoxMetal = new PictureBox();
-            pictureBoxAlternativ = new PictureBox();
-            labelRock = new Label();
-            labelElectronic = new Label();
-            labelMetal = new Label();
             labelAlternative = new Label();
+            labelMetal = new Label();
+            labelElectronic = new Label();
+            labelRock = new Label();
+            pictureBoxAlternativ = new PictureBox();
+            pictureBoxMetal = new PictureBox();
+            pictureBoxElectronic = new PictureBox();
+            pictureBoxRock = new PictureBox();
+            labelWorld = new Label();
+            labelRapHipHop = new Label();
+            labelIndi = new Label();
+            labelRap = new Label();
+            pictureBoxWorld = new PictureBox();
+            pictureBoxRapHipHop = new PictureBox();
+            pictureBoxIndi = new PictureBox();
+            pictureBoxInRap = new PictureBox();
+            labelPop = new Label();
+            pictureBoxPop = new PictureBox();
             label1 = new Label();
             label2 = new Label();
             checkedListBoxArtist = new CheckedListBox();
             buttonRegistration = new Button();
             panelGenres.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPop).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxInRap).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxIndi).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRapHipHop).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxWorld).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRock).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxElectronic).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxMetal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlternativ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMetal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxElectronic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxWorld).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRapHipHop).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIndi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxInRap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPop).BeginInit();
             SuspendLayout();
             // 
             // lblGenres
@@ -118,163 +118,16 @@
             panelGenres.Size = new Size(954, 266);
             panelGenres.TabIndex = 2;
             // 
-            // pictureBoxPop
+            // labelAlternative
             // 
-            pictureBoxPop.BackColor = Color.Violet;
-            pictureBoxPop.Location = new Point(139, 0);
-            pictureBoxPop.Name = "pictureBoxPop";
-            pictureBoxPop.Size = new Size(102, 88);
-            pictureBoxPop.TabIndex = 0;
-            pictureBoxPop.TabStop = false;
-            // 
-            // labelPop
-            // 
-            labelPop.AutoSize = true;
-            labelPop.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelPop.ForeColor = SystemColors.ButtonHighlight;
-            labelPop.Location = new Point(168, 94);
-            labelPop.Name = "labelPop";
-            labelPop.Size = new Size(33, 20);
-            labelPop.TabIndex = 1;
-            labelPop.Text = "Поп";
-            // 
-            // pictureBoxInRap
-            // 
-            pictureBoxInRap.BackColor = Color.Violet;
-            pictureBoxInRap.Location = new Point(292, 0);
-            pictureBoxInRap.Name = "pictureBoxInRap";
-            pictureBoxInRap.Size = new Size(102, 88);
-            pictureBoxInRap.TabIndex = 2;
-            pictureBoxInRap.TabStop = false;
-            // 
-            // pictureBoxIndi
-            // 
-            pictureBoxIndi.BackColor = Color.Violet;
-            pictureBoxIndi.Location = new Point(449, 0);
-            pictureBoxIndi.Name = "pictureBoxIndi";
-            pictureBoxIndi.Size = new Size(102, 88);
-            pictureBoxIndi.TabIndex = 3;
-            pictureBoxIndi.TabStop = false;
-            // 
-            // pictureBoxRapHipHop
-            // 
-            pictureBoxRapHipHop.BackColor = Color.Violet;
-            pictureBoxRapHipHop.Location = new Point(595, 0);
-            pictureBoxRapHipHop.Name = "pictureBoxRapHipHop";
-            pictureBoxRapHipHop.Size = new Size(102, 88);
-            pictureBoxRapHipHop.TabIndex = 4;
-            pictureBoxRapHipHop.TabStop = false;
-            // 
-            // pictureBoxWorld
-            // 
-            pictureBoxWorld.BackColor = Color.Violet;
-            pictureBoxWorld.Location = new Point(748, 0);
-            pictureBoxWorld.Name = "pictureBoxWorld";
-            pictureBoxWorld.Size = new Size(102, 88);
-            pictureBoxWorld.TabIndex = 5;
-            pictureBoxWorld.TabStop = false;
-            // 
-            // labelRap
-            // 
-            labelRap.AutoSize = true;
-            labelRap.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelRap.ForeColor = SystemColors.ButtonHighlight;
-            labelRap.Location = new Point(292, 94);
-            labelRap.Name = "labelRap";
-            labelRap.Size = new Size(119, 20);
-            labelRap.TabIndex = 6;
-            labelRap.Text = "Иностранный рэп";
-            // 
-            // labelIndi
-            // 
-            labelIndi.AutoSize = true;
-            labelIndi.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelIndi.ForeColor = SystemColors.ButtonHighlight;
-            labelIndi.Location = new Point(481, 94);
-            labelIndi.Name = "labelIndi";
-            labelIndi.Size = new Size(41, 20);
-            labelIndi.TabIndex = 7;
-            labelIndi.Text = "Инди";
-            // 
-            // labelRapHipHop
-            // 
-            labelRapHipHop.AutoSize = true;
-            labelRapHipHop.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelRapHipHop.ForeColor = SystemColors.ButtonHighlight;
-            labelRapHipHop.Location = new Point(600, 94);
-            labelRapHipHop.Name = "labelRapHipHop";
-            labelRapHipHop.Size = new Size(91, 20);
-            labelRapHipHop.TabIndex = 8;
-            labelRapHipHop.Text = "Рэп и хип-хоп";
-            // 
-            // labelWorld
-            // 
-            labelWorld.AutoSize = true;
-            labelWorld.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelWorld.ForeColor = SystemColors.ButtonHighlight;
-            labelWorld.Location = new Point(758, 91);
-            labelWorld.Name = "labelWorld";
-            labelWorld.Size = new Size(92, 20);
-            labelWorld.TabIndex = 9;
-            labelWorld.Text = "Музыка мира";
-            // 
-            // pictureBoxRock
-            // 
-            pictureBoxRock.BackColor = Color.Violet;
-            pictureBoxRock.Location = new Point(207, 143);
-            pictureBoxRock.Name = "pictureBoxRock";
-            pictureBoxRock.Size = new Size(102, 88);
-            pictureBoxRock.TabIndex = 10;
-            pictureBoxRock.TabStop = false;
-            // 
-            // pictureBoxElectronic
-            // 
-            pictureBoxElectronic.BackColor = Color.Violet;
-            pictureBoxElectronic.Location = new Point(362, 143);
-            pictureBoxElectronic.Name = "pictureBoxElectronic";
-            pictureBoxElectronic.Size = new Size(102, 88);
-            pictureBoxElectronic.TabIndex = 11;
-            pictureBoxElectronic.TabStop = false;
-            // 
-            // pictureBoxMetal
-            // 
-            pictureBoxMetal.BackColor = Color.Violet;
-            pictureBoxMetal.Location = new Point(520, 143);
-            pictureBoxMetal.Name = "pictureBoxMetal";
-            pictureBoxMetal.Size = new Size(102, 88);
-            pictureBoxMetal.TabIndex = 12;
-            pictureBoxMetal.TabStop = false;
-            // 
-            // pictureBoxAlternativ
-            // 
-            pictureBoxAlternativ.BackColor = Color.Violet;
-            pictureBoxAlternativ.Location = new Point(674, 143);
-            pictureBoxAlternativ.Name = "pictureBoxAlternativ";
-            pictureBoxAlternativ.Size = new Size(102, 88);
-            pictureBoxAlternativ.TabIndex = 13;
-            pictureBoxAlternativ.TabStop = false;
-            // 
-            // labelRock
-            // 
-            labelRock.AutoSize = true;
-            labelRock.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelRock.ForeColor = SystemColors.ButtonHighlight;
-            labelRock.Location = new Point(240, 234);
-            labelRock.Name = "labelRock";
-            labelRock.Size = new Size(31, 20);
-            labelRock.TabIndex = 14;
-            labelRock.Text = "Рок";
-            // 
-            // labelElectronic
-            // 
-            labelElectronic.AutoSize = true;
-            labelElectronic.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelElectronic.ForeColor = SystemColors.ButtonHighlight;
-            labelElectronic.Location = new Point(375, 234);
-            labelElectronic.Name = "labelElectronic";
-            labelElectronic.Size = new Size(89, 20);
-            labelElectronic.TabIndex = 15;
-            labelElectronic.Text = "Электроника";
+            labelAlternative.AutoSize = true;
+            labelAlternative.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelAlternative.ForeColor = SystemColors.ButtonHighlight;
+            labelAlternative.Location = new Point(678, 234);
+            labelAlternative.Name = "labelAlternative";
+            labelAlternative.Size = new Size(98, 20);
+            labelAlternative.TabIndex = 17;
+            labelAlternative.Text = "Альтернатива";
             // 
             // labelMetal
             // 
@@ -287,16 +140,165 @@
             labelMetal.TabIndex = 16;
             labelMetal.Text = "Метал";
             // 
-            // labelAlternative
+            // labelElectronic
             // 
-            labelAlternative.AutoSize = true;
-            labelAlternative.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelAlternative.ForeColor = SystemColors.ButtonHighlight;
-            labelAlternative.Location = new Point(678, 234);
-            labelAlternative.Name = "labelAlternative";
-            labelAlternative.Size = new Size(98, 20);
-            labelAlternative.TabIndex = 17;
-            labelAlternative.Text = "Альтернатива";
+            labelElectronic.AutoSize = true;
+            labelElectronic.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelElectronic.ForeColor = SystemColors.ButtonHighlight;
+            labelElectronic.Location = new Point(375, 234);
+            labelElectronic.Name = "labelElectronic";
+            labelElectronic.Size = new Size(89, 20);
+            labelElectronic.TabIndex = 15;
+            labelElectronic.Text = "Электроника";
+            // 
+            // labelRock
+            // 
+            labelRock.AutoSize = true;
+            labelRock.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelRock.ForeColor = SystemColors.ButtonHighlight;
+            labelRock.Location = new Point(240, 234);
+            labelRock.Name = "labelRock";
+            labelRock.Size = new Size(31, 20);
+            labelRock.TabIndex = 14;
+            labelRock.Text = "Рок";
+            // 
+            // pictureBoxAlternativ
+            // 
+            pictureBoxAlternativ.BackColor = Color.Violet;
+            pictureBoxAlternativ.Location = new Point(674, 143);
+            pictureBoxAlternativ.Name = "pictureBoxAlternativ";
+            pictureBoxAlternativ.Size = new Size(102, 88);
+            pictureBoxAlternativ.TabIndex = 13;
+            pictureBoxAlternativ.TabStop = false;
+            // 
+            // pictureBoxMetal
+            // 
+            pictureBoxMetal.BackColor = Color.Violet;
+            pictureBoxMetal.Location = new Point(520, 143);
+            pictureBoxMetal.Name = "pictureBoxMetal";
+            pictureBoxMetal.Size = new Size(102, 88);
+            pictureBoxMetal.TabIndex = 12;
+            pictureBoxMetal.TabStop = false;
+            // 
+            // pictureBoxElectronic
+            // 
+            pictureBoxElectronic.BackColor = Color.Violet;
+            pictureBoxElectronic.Location = new Point(362, 143);
+            pictureBoxElectronic.Name = "pictureBoxElectronic";
+            pictureBoxElectronic.Size = new Size(102, 88);
+            pictureBoxElectronic.TabIndex = 11;
+            pictureBoxElectronic.TabStop = false;
+            // 
+            // pictureBoxRock
+            // 
+            pictureBoxRock.BackColor = Color.Violet;
+            pictureBoxRock.Location = new Point(207, 143);
+            pictureBoxRock.Name = "pictureBoxRock";
+            pictureBoxRock.Size = new Size(102, 88);
+            pictureBoxRock.TabIndex = 10;
+            pictureBoxRock.TabStop = false;
+            // 
+            // labelWorld
+            // 
+            labelWorld.AutoSize = true;
+            labelWorld.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelWorld.ForeColor = SystemColors.ButtonHighlight;
+            labelWorld.Location = new Point(758, 91);
+            labelWorld.Name = "labelWorld";
+            labelWorld.Size = new Size(92, 20);
+            labelWorld.TabIndex = 9;
+            labelWorld.Text = "Музыка мира";
+            // 
+            // labelRapHipHop
+            // 
+            labelRapHipHop.AutoSize = true;
+            labelRapHipHop.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelRapHipHop.ForeColor = SystemColors.ButtonHighlight;
+            labelRapHipHop.Location = new Point(600, 94);
+            labelRapHipHop.Name = "labelRapHipHop";
+            labelRapHipHop.Size = new Size(91, 20);
+            labelRapHipHop.TabIndex = 8;
+            labelRapHipHop.Text = "Рэп и хип-хоп";
+            // 
+            // labelIndi
+            // 
+            labelIndi.AutoSize = true;
+            labelIndi.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelIndi.ForeColor = SystemColors.ButtonHighlight;
+            labelIndi.Location = new Point(481, 94);
+            labelIndi.Name = "labelIndi";
+            labelIndi.Size = new Size(41, 20);
+            labelIndi.TabIndex = 7;
+            labelIndi.Text = "Инди";
+            // 
+            // labelRap
+            // 
+            labelRap.AutoSize = true;
+            labelRap.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelRap.ForeColor = SystemColors.ButtonHighlight;
+            labelRap.Location = new Point(292, 94);
+            labelRap.Name = "labelRap";
+            labelRap.Size = new Size(119, 20);
+            labelRap.TabIndex = 6;
+            labelRap.Text = "Иностранный рэп";
+            // 
+            // pictureBoxWorld
+            // 
+            pictureBoxWorld.BackColor = Color.Violet;
+            pictureBoxWorld.Location = new Point(748, 0);
+            pictureBoxWorld.Name = "pictureBoxWorld";
+            pictureBoxWorld.Size = new Size(102, 88);
+            pictureBoxWorld.TabIndex = 5;
+            pictureBoxWorld.TabStop = false;
+            // 
+            // pictureBoxRapHipHop
+            // 
+            pictureBoxRapHipHop.BackColor = Color.Violet;
+            pictureBoxRapHipHop.Location = new Point(595, 0);
+            pictureBoxRapHipHop.Name = "pictureBoxRapHipHop";
+            pictureBoxRapHipHop.Size = new Size(102, 88);
+            pictureBoxRapHipHop.TabIndex = 4;
+            pictureBoxRapHipHop.TabStop = false;
+            // 
+            // pictureBoxIndi
+            // 
+            pictureBoxIndi.BackColor = Color.Violet;
+            pictureBoxIndi.Location = new Point(449, 0);
+            pictureBoxIndi.Name = "pictureBoxIndi";
+            pictureBoxIndi.Size = new Size(102, 88);
+            pictureBoxIndi.TabIndex = 3;
+            pictureBoxIndi.TabStop = false;
+            // 
+            // pictureBoxInRap
+            // 
+            pictureBoxInRap.BackColor = Color.Violet;
+            pictureBoxInRap.Location = new Point(292, 0);
+            pictureBoxInRap.Name = "pictureBoxInRap";
+            pictureBoxInRap.Size = new Size(102, 88);
+            pictureBoxInRap.TabIndex = 2;
+            pictureBoxInRap.TabStop = false;
+            // 
+            // labelPop
+            // 
+            labelPop.AutoSize = true;
+            labelPop.Font = new Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelPop.ForeColor = SystemColors.ButtonHighlight;
+            labelPop.Location = new Point(168, 94);
+            labelPop.Name = "labelPop";
+            labelPop.Size = new Size(33, 20);
+            labelPop.TabIndex = 1;
+            labelPop.Text = "Поп";
+            // 
+            // pictureBoxPop
+            // 
+            pictureBoxPop.BackColor = Color.Violet;
+            pictureBoxPop.BackgroundImage = Properties.Resources.free_icon_musical_8197113;
+            pictureBoxPop.BackgroundImageLayout = ImageLayout.Center;
+            pictureBoxPop.Location = new Point(139, 0);
+            pictureBoxPop.Name = "pictureBoxPop";
+            pictureBoxPop.Size = new Size(102, 88);
+            pictureBoxPop.TabIndex = 0;
+            pictureBoxPop.TabStop = false;
             // 
             // label1
             // 
@@ -367,15 +369,15 @@
             Text = "Регистрация";
             panelGenres.ResumeLayout(false);
             panelGenres.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPop).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxInRap).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxIndi).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRapHipHop).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxWorld).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRock).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxElectronic).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxMetal).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlternativ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMetal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxElectronic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxWorld).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRapHipHop).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIndi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxInRap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPop).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
