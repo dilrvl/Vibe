@@ -53,10 +53,10 @@
             // txtLogin
             // 
             txtLogin.Anchor = AnchorStyles.None;
-            txtLogin.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLogin.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLogin.Location = new Point(490, 290);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(273, 31);
+            txtLogin.Size = new Size(273, 30);
             txtLogin.TabIndex = 1;
             txtLogin.TextAlign = HorizontalAlignment.Center;
             // 

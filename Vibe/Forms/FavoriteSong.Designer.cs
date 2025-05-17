@@ -58,18 +58,19 @@
             // buttonBack
             // 
             buttonBack.BackColor = Color.Transparent;
-            buttonBack.BackgroundImage = Properties.Resources.Mask_group__1_;
+            buttonBack.BackgroundImage = Properties.Resources.Снимок_экрана_2025_05_17_035848;
             buttonBack.BackgroundImageLayout = ImageLayout.Stretch;
+            buttonBack.FlatStyle = FlatStyle.Flat;
             buttonBack.Location = new Point(21, 21);
             buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(50, 39);
+            buttonBack.Size = new Size(53, 42);
             buttonBack.TabIndex = 2;
             buttonBack.UseVisualStyleBackColor = false;
             buttonBack.Click += buttonBack_Click;
             // 
             // panelTracks
             // 
-            panelTracks.BackColor = SystemColors.ActiveBorder;
+            panelTracks.BackColor = SystemColors.ActiveCaptionText;
             panelTracks.Location = new Point(194, 108);
             panelTracks.Name = "panelTracks";
             panelTracks.Size = new Size(852, 446);

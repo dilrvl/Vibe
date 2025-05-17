@@ -52,9 +52,10 @@
             // 
             // txtLogin
             // 
+            txtLogin.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             txtLogin.Location = new Point(496, 206);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(282, 27);
+            txtLogin.Size = new Size(282, 30);
             txtLogin.TabIndex = 1;
             // 
             // lblPassword
@@ -129,6 +130,7 @@
             // 
             button2.BackColor = Color.Gold;
             button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             button2.Location = new Point(555, 404);
             button2.Name = "button2";
             button2.Size = new Size(172, 45);
